@@ -1,23 +1,30 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Route, Switch, NavLink } from "react-router-dom";
+import "./App.css";
+import EditUser from "./components/EditUser";
+import CreateUser from "./components/CreateUser";
+import User from "./components/User";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <BrowserRouter>
+        <div className="nav  d-flex p-3">
+          <p className="">CREATE PROFILE</p>
+          <div className="ml-auto mr-5">
+            <NavLink className="linkname mr-3" to="/">
+              HOME
+            </NavLink>
+            <NavLink className="linkname" to="/createUser">
+              ADD USER
+            </NavLink>
+          </div>
+        </div>
+        <Switch>
+          <Route path="/" exact component={User} />
+          <Route path="/edituser/:id" component={EditUser} />
+          <Route path="/createUser" component={CreateUser} />
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }
